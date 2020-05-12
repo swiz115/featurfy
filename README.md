@@ -12,10 +12,10 @@ This feature allows users to filter their Spotify liked songs by genre, bpm, val
 ```
 git clone https://github.com/smithjosh115/featurfy
 cd featurfy
-'''
-Set your CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, and SECRET_KEY in '''config.py'''
-To create a SECRET_KEY run '''python3 -c 'import os; print(os.urandom(24))''''
-'''
+```
+Set your CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, and SECRET_KEY in ```config.py```.
+To create a SECRET_KEY run ```python3 -c 'import os; print(os.urandom(24))'```
+```
 python3 -m venv env
 source env/bin/activate
 pip install -e .
