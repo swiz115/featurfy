@@ -593,7 +593,6 @@ $("#songs").scroll(function(){
 $(document).on("click", "i.fa-heart", function(ele) {
     let getSongId = ele.target.id.split("-");
     if(ele.target.id === "heart-all-icon"){
-        console.log("heart");
         // Switch select all heart to close icon
         $("#" + ele.target.id).remove();
         $("#all-col").append("<i id='close-all-icon' style='color: red;' class='fa fa-close'></i>");
@@ -641,13 +640,33 @@ function addSongToPlaylist(songId){
 
 $(document).on("click", "i.fa-close", function(ele) {
     if(ele.target.id === "close-all-icon"){
+        // Remove all filtered songs
         // Switch remove all close to heart icon
         $("#" + ele.target.id).remove();
         $("#all-col").append("<i id='heart-all-icon' style='color: white;' class='fa fa-heart'></i>");
         $("#all-text").text("Select all");
         removeAllFilteredFromPlaylist();
     }
+    else if(ele.target.id === "my-playlist-all-icon"){
+        // Remove all playlist songs
+        let myPlaylistSongsCopy = myPlaylistSongs.slice();
+        for (let songId of myPlaylistSongsCopy) {
+            //FIX THIS: only swap icons from filtered song display if song is in group of songs that are currently being displayed
+            // Remove close icon from filtered display
+            $("#close-" + songId + "-filtered").remove();
+            // Add heart icon to filtered display
+            $("#icon-" + songId + "-filtered").append("<i id='heart-" + songId + "-filtered' class='fa fa-heart'></i>");
+            removeSongFromPlaylist(songId);
+        }
+
+        if(numFilteredSongsSaved < filteredSongs.length){
+            $("#all-col").empty();
+            $("#all-col").append("<i id='heart-all-icon' style='color: white;' class='fa fa-heart'></i>");
+            $("#all-text").text("Select all");
+        }
+    }
     else{
+        // Remove single song manually 
         let getSongId = ele.target.id.split("-");
         //FIX THIS: only swap icons from filtered song display if song is in group of songs that are currently being displayed
         // Remove close icon from filtered display
@@ -727,10 +746,19 @@ $("#create-playlist-button" ).click(function() {
             return response.json();
         })
         .then((data) => {
-           
-            //successful playlist ceated put a confirmation here 
+            let successAlert = "<div style='margin-bottom: 0px; font-size: 90%' class='alert alert-success alert-dismissible text-left'> \
+                                    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> \
+                                    Playlist successfully created! \
+                                </div>";
+            $("#my-playlist-ordered-list").prepend(successAlert);
         })
-        .catch(error => console.log(error));
+        .catch((error) => {
+            let dangerAlert = "<div style='margin-bottom: 0px; font-size: 90%' class='alert alert-danger alert-dismissible text-left'> \
+                                    <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a> \
+                                    Oops! An error occured. Please try again. \
+                                </div>";
+            $("#my-playlist-ordered-list").prepend(dangerAlert);
+        })
     
 });
 
