@@ -1,7 +1,7 @@
 # Featurfy
 
 ## Overview
-Featurfy is a web app that allows Spotify users to explore a variety of features built using Spotify's Web API. This is an ongoing project that will have new features released monthly!
+Featurfy is a web app that allows Spotify users to explore a variety of features built using Spotify's Web API. Each feature isn't big enough to be an independent application, so I decided to create a platform for them. This is an ongoing project that will have new features released periodically!
 <br />
 <br />
 Visit here: [Featurfy](http://www.featurfy.org/)
