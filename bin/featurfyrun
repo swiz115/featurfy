@@ -1,0 +1,14 @@
+#!/bin/bash
+# insta485db
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+set -x
+
+./bin/featurfydb destroy
+./bin/featurfydb create
+export FLASK_DEBUG=True
+export FLASK_APP=featurfy
+export FEATURFY_SETTINGS=config.py
+flask run --host 0.0.0.0 --port 8000

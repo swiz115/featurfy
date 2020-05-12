@@ -1,0 +1,233 @@
+#nav {
+  padding: 30px;
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align: center;
+	color: #2c3e50;
+}	
+
+#logout-button{
+  border-radius: 24px; 
+  border-color: #1DB954; 
+  color: white; 
+  margin-right: 10%;
+}
+
+.row-space{
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+#create-playlist-button-col{
+  padding-left: 5px;
+}
+
+#pills-tab{
+  background-color: #333333;
+}
+
+#input-name-col{
+  padding-right: 5px;
+}
+
+.slider{
+  margin-left: 42px; 
+}
+
+.chart-dimensions{
+  width: 100%; 
+  height: 100%;
+  margin-right: 0px;
+}
+
+.chart-scroll{
+  overflow: auto;
+}
+
+.genres{
+  margin-top: 20px;
+}
+
+.navbar-background{
+  flex-shrink: 0; 
+  background-image: linear-gradient(#5f5f5f, #333333);
+}
+
+.navbar-logo-offset{
+  margin-left: 10%;
+}
+
+.navbar-logout-offset{
+  margin-right: 10%;
+}
+
+.mini-song-display{
+  margin: 0px 0px 0px 0px; 
+  background-color: #333333; 
+  padding-left: 0px;
+}
+
+.song{
+  padding-top: 10px; 
+  padding-right: 0px; 
+  padding-bottom: 10px;
+  padding-left: 0px; 
+  border-top: 1px solid grey; 
+  font-size: 90%; 
+  color: white; 
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  overflow-x: hidden;
+}
+
+.graph-row{
+  margin-top: 6px;
+}
+
+.mini-display-features{
+  font-size: .775rem;
+}
+
+div.small-genres{
+  margin-top: 6px; 
+  margin-right: 6px; 
+  font-size: .675rem; 
+  color: white;
+}
+
+div.no-col-padding{
+  padding: 0px;
+}
+
+div.dropdown-menu{
+  width: 100px;
+}
+
+#filtered-songs-tab.nav-link.active{
+  color: white;
+  background-color: #28a745;
+  border-radius: 24px;
+}
+
+#filtered-songs-tab.nav-link{
+  color: white;
+  background-color:  #333333;
+  border-radius: 24px;
+}
+
+#my-playlist-tab.nav-link.active{
+  color: white;
+  background-color: #28a745;
+  border-radius: 24px;
+}
+
+#my-playlist-tab.nav-link{
+  color: white;
+  background-color:  #333333;
+  border-radius: 24px;
+}
+
+button.dropdown-toggle{
+  border-radius: 24px;
+}
+
+#my-playlist-header-row{
+  margin: 10px 0px 10px 0px;
+}
+
+#my-playlist-song-count{
+  margin: 10px 0px 10px 0px;
+}
+
+#my-playlist-name{
+  font-size: 90%;
+}
+
+#create-playlist-button{
+  font-size: 90%;
+}
+
+.song-count{
+  color: white; 
+  font-size: 90%;
+}
+
+.rounded-buttons{
+}
+
+div.rounded-buttons{
+  border-radius: 24px;
+}
+
+input.rounded-buttons{
+  border-radius: 24px;
+}
+
+li.nav-item{
+  background-color: #333333
+}
+
+html, body{
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#left-graphs {
+  text-align: center;
+  height: calc(100% - 72px);
+  position: absolute;
+  left: 0;
+  width: 75%;
+  overflow-y: scroll; 
+  display: none;
+}
+
+#left-load {
+  text-align: center;
+  height: calc(100% - 72px);
+  position: absolute;
+  left: 0;
+  width: 75%;
+  overflow-y: scroll; 
+}
+
+#right {
+  height: calc(100% - 71px);
+  background-color: #333333;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  width: 32%;
+}
+
+#songs {
+  height: calc(100% - 36px);
+  background-color: #333333;
+  text-align: center;
+  position: absolute;
+  
+  right: 0;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.feature-descriptions{
+  font-size: 70%;
+  margin-top: 4px;
+}
+
+.hide-initial{
+}
+
+div.hide-initial{
+  display: none;
+}
