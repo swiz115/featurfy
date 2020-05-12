@@ -7,4 +7,4 @@ Featurfy is a web app that allows Spotify users to explore a variety of features
 Visit here: [Featurfy](http://www.featurfy.org/)
 ## Features
 ### Audio Feature Playlist
-This feature allows users to filter their Spotify liked songs by genre, bpm, valence, energy, and danceability. This feature also allows users to create a playlist as they explore the differnt filters. 
+This feature allows users to filter their Spotify liked songs by genre, bpm, valence, energy, and danceability. This feature also allows users to create a playlist as they explore the different filters. 
