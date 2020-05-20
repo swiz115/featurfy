@@ -3,6 +3,7 @@
 <head>
     <title>featurfy</title>
     <link rel="stylesheet" href="/static/css/audiofeat.css">
+    <link rel="stylesheet" href="/static/css/header.css">
     <link rel="shortcut icon" href="/static/images/logo.png">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <!-- Bootstrap CSS -->
@@ -16,7 +17,6 @@
                     <div class="navbar-logo-offset">
                         <a class="navbar-brand" href="/">
                             <img src="/static/images/logo.png" width="45" height="45" class="d-inline-block" alt="">
-                            <!-- <span style="vertical-align: bottom;" class="navbar-brand">featurfy</span> -->
                         </a>
                     </div>
                     <a class="navbar-logout-offset" href="/logout/">
@@ -26,11 +26,11 @@
             </nav>
             <div class="row">
                 <div id="left-load" class="col-8 align-items-center">
-                    <div style='margin-top:4.25%;'>
-                        <div style='width: 200px; height: 200px;'class="spinner-border" role="status">
+                    <div class="spinner-margin">
+                        <div class="spinner-border" role="status">
                           <span class="sr-only">Loading...</span>
                         </div>
-                        <div style="margin-top: 3px; margin-left: -2px;">Please wait while we fetch your Spotify music</div>
+                        <div class='load-text'>Please wait while we fetch your Spotify music</div>
                     </div>
                 </div>
                 <div id="left-graphs" class="col-8">
@@ -45,16 +45,16 @@
                                 </div> 
                             </div>
                             <div class="row align-items-start">
-                                <div id="bpm-min-slider" class="slider" style="font-size: 11px;">0</div>
-                                <div style="padding-right: 13px;" class="col">
+                                <div id="bpm-min-slider" class="slider chart-icon-font">0</div>
+                                <div class="col slider-padding">
                                     <div id="slider-bpm"></div>
                                 </div>
-                                <div id="bpm-max-slider" style="font-size: 11px; margin-right: 5px;">210</div>
-                                <div style="font-size: 11px; margin-right: 5px;">
-                                    <i id="bpm-help" class="fa fa-info"></i>
+                                <div id="bpm-max-slider" class="chart-icon-margin chart-icon-font">210</div>
+                                <div class="chart-icon-margin chart-icon-font">
+                                    <i id="bpm-help" class="fa fa-info clickable"></i>
                                 </div>
-                                <div style=" margin-right: 20px; font-size: 11px;">
-                                    <i id="bpm-zoom" class="fa fa-plus"></i>
+                                <div class="zoom-icon-margin chart-icon-font">
+                                    <i id="bpm-zoom" class="fa fa-plus clickable"></i>
                                 </div>
                             </div>
                             <div id="bpm-description" class="row align-items-start hide-initial">
@@ -72,16 +72,16 @@
                                 </div>  
                             </div>
                             <div class="row align-items-start">
-                                <div id="valence-min-slider" class="slider" style="font-size: 11px;">0</div>
-                                <div style="padding-right: 13px;" class="col">
+                                <div id="valence-min-slider" class="slider chart-icon-font">0</div>
+                                <div class="col slider-padding">
                                     <div id="slider-valence"></div>
                                 </div>
-                                <div id="valence-max-slider" style="font-size: 11px; margin-right: 5px;">100</div>
-                                <div style="font-size: 11px; margin-right: 5px;">
-                                    <i id="valence-help" class="fa fa-info"></i>
+                                <div id="valence-max-slider" class="chart-icon-font chart-icon-margin">100</div>
+                                <div class="chart-icon-margin chart-icon-font">
+                                    <i id="valence-help" class="fa fa-info clickable"></i>
                                 </div>
-                                <div style=" margin-right: 20px; font-size: 11px;">
-                                    <i id="valence-zoom" class="fa fa-plus"></i>
+                                <div class="zoom-icon-margin chart-icon-font">
+                                    <i id="valence-zoom" class="fa fa-plus clickable"></i>
                                 </div>
                             </div>
                             <div id="valence-description" class="row align-items-start hide-initial">
@@ -99,16 +99,16 @@
                                 </div>  
                             </div>
                             <div class="row align-items-start">
-                                <div id="energy-min-slider" class="slider" style="font-size: 11px;">0</div>
-                                <div style="padding-right: 13px;" class="col">
+                                <div id="energy-min-slider" class="slider chart-icon-font">0</div>
+                                <div class="col slider-padding">
                                     <div id="slider-energy"></div>
                                 </div>
-                                <div id="energy-max-slider" style="font-size: 11px; margin-right: 5px;">100</div>
-                                <div style="font-size: 11px; margin-right: 5px;">
-                                    <i id="energy-help" class="fa fa-info"></i>
+                                <div id="energy-max-slider" class="chart-icon-font chart-icon-margin">100</div>
+                                <div class="chart-icon-margin chart-icon-font">
+                                    <i id="energy-help" class="fa fa-info clickable"></i>
                                 </div>
-                                <div style=" margin-right: 20px; font-size: 11px;">
-                                    <i id="energy-zoom" class="fa fa-plus"></i>
+                                <div class="zoom-icon-margin chart-icon-font">
+                                    <i id="energy-zoom" class="fa fa-plus clickable"></i>
                                 </div>
                             </div>
                             <div id="energy-description" class="row align-items-start hide-initial">
@@ -126,16 +126,16 @@
                                 </div>  
                             </div>
                             <div class="row align-items-start">
-                                <div id="danceability-min-slider" class="slider" style="font-size: 11px;">0</div>
-                                <div style="padding-right: 13px;" class="col">
+                                <div id="danceability-min-slider" class="slider chart-icon-font">0</div>
+                                <div class="col slider-padding">
                                     <div id="slider-danceability"></div>
                                 </div>
-                                <div id="danceability-max-slider" style="font-size: 11px; margin-right: 5px;">100</div>
-                                <div style="font-size: 11px; margin-right: 5px;">
-                                    <i id="danceability-help" class="fa fa-info"></i>
+                                <div id="danceability-max-slider" class="chart-icon-margin chart-icon-font">100</div>
+                                <div class="chart-icon-margin chart-icon-font">
+                                    <i id="danceability-help" class="fa fa-info clickable"></i>
                                 </div>
-                                <div style=" margin-right: 20px; font-size: 11px;">
-                                    <i id="danceability-zoom" class="fa fa-plus"></i>
+                                <div class="zoom-icon-margin chart-icon-font">
+                                    <i id="danceability-zoom" class="fa fa-plus clickable"></i>
                                 </div>
                             </div> 
                             <div id="danceability-description" class="row align-items-start hide-initial">
@@ -145,7 +145,7 @@
                             </div>
                         </div> 
                     </div>
-                    <div style="margin-top: 20px;" class="row">
+                    <div class="row genre-row-margin">
                         <div class="col text-right">
                             <select id="genre-selector" selectedTextFormat="values" data-width="194px" title="Filter songs by genre" class="selectpicker" data-live-search="true" multiple data-size="4" data-dropup-auto="false" data-display="static">
                             </select>
@@ -155,7 +155,7 @@
                 </div>
                 <div id="right" class="col-5">
                     <div class="mini-song-display row">
-                        <ul style="font-size: 90%"class="nav navbar-dark nav-pills" id="pills-tab" role="tablist">
+                        <ul class="nav navbar-dark nav-pills" id="pills-tab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active rounded-buttons" id="filtered-songs-tab" data-toggle="pill" href="#filtered-songs" role="tab" aria-controls="filtered-songs" aria-selected="true">Filtered Songs</a>
                             </li>
@@ -166,19 +166,16 @@
                     </div>
                     <div id="songs" class="tab-content">
                         <div id="filtered-songs" class="tab-pane fade in active show">
-                            <div id="all-header" class="row" style="margin-top: 10px; margin-bottom: 10px; margin-left: 0px; margin-right: 0px;">
-                                <div id="all-col" style="color: white; font-size: 90%;" class="col-1 text-left">
+                            <div id="all-header" class="row">
+                                <div id="all-col" class="col-1 text-left all-color-font">
                                     <i id="heart-all-icon" class="fa fa-heart"></i>
                                 </div>
-                                <div id="all-text" style="color: white; font-size: 90%;" class="col text-left">
+                                <div id="all-text" class="col text-left all-color-font">
                                     Select all
                                 </div>
                                 <div id="filtered-song-count" class="col text-right song-count">Songs: 0</div>
                             </div>
-                            <!-- <div style="margin-bottom: 10px; margin-left: 0px;" class="row">
-                                <div style="color: white; font-size: 90%;" class="col text-left">Songs: 0</div>
-                            </div> -->
-                            <ol id="filtered-songs-ordered-list" style="padding: 0px;">
+                            <ol id="filtered-songs-ordered-list">
 
                             </ol>
                         </div>
@@ -188,20 +185,20 @@
                                     <input id="my-playlist-name" type="text" class="form-control rounded-buttons" placeholder="Enter a name" aria-label="Username" aria-describedby="basic-addon1">
                                 </div>
                                 <div id="create-playlist-button-col" class="col align-self-center">
-                                    <div style="width: 100%" id="create-playlist-button" class="btn btn-success rounded-buttons">Create playlist</div>
+                                    <div id="create-playlist-button" class="btn btn-success rounded-buttons">Create playlist</div>
                                 </div>
                             </div>
 
-                            <div id="my-playlist-all-header" class="row" style="margin-top: 10px; margin-bottom: 10px; margin-left: 0px; margin-right: 0px;">
-                                <div id="my-playlist-all-col" style="color: red; font-size: 90%;" class="col-1 text-left">
+                            <div id="my-playlist-all-header" class="row">
+                                <div id="my-playlist-all-col" class="col-1 text-left all-color-font">
                                     <i id="my-playlist-all-icon" class="fa fa-close"></i>
                                 </div>
-                                <div id="my-playlist-all-text" style="color: white; font-size: 90%;" class="col text-left">
+                                <div id="my-playlist-all-text" class="col text-left all-color-font">
                                     Remove all
                                 </div>
                                 <div id="my-playlist-song-count-col" class="col text-right song-count">Songs: 0</div>
                             </div>
-                            <ol id="my-playlist-ordered-list" style="padding: 0px;">
+                            <ol id="my-playlist-ordered-list">
                                 
                             </ol>
                         </div>
