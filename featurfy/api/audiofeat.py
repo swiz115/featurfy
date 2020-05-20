@@ -1,26 +1,26 @@
-#BPM API
+#Auto Feat API
 import flask
 import json
 import featurfy
 import requests
-from featurfy.model import get_db, getTokens, makeAuthorizationHeaders, makeRequestEndpointHeaders, check_valid_access_tokens
+from featurfy.model import get_db, makeRequestEndpointHeaders, check_valid_access_tokens
 
 SPOTIFY_API_URL = 'https://api.spotify.com/v1'
 
 
 @featurfy.app.route('/api/v1/createbpmplaylist/', methods=['POST','GET'])
-def create_bpm_playlist():
+def audio_feat_playlist():
     '''
-    Create BPM playlist route:
+    Audio Feat playlist route:
     GET: Retrives all users saved songs and audio features of each track 
     POST: Create playlist of given tracks 
     '''
     if 'username' not in flask.session:
-        return {'error': 'session expired'} 
+        # Session expired redirect to index page
+        return flask.make_response(flask.jsonify({}), 401) 
 
     # GET: Retrives all users saved songs and audio features of each track 
     if flask.request.method == 'GET':
-        # bpm_value = flask.request.get_json() 
         genre_dic = {}
         genre_list = []
         saved_tracks_dic = {}
@@ -47,6 +47,7 @@ def create_bpm_playlist():
             
             if 'error' in saved_tracks_data:
                 print(saved_tracks_data)
+                return flask.make_response(flask.jsonify({}), 500)
 
             for track_obj in saved_tracks_data['items']:
                 saved_tracks_list.append(track_obj['track']['id'])
@@ -94,6 +95,7 @@ def create_bpm_playlist():
 
                 if 'error' in audio_response_data:
                     print(audio_response_data)
+                    return flask.make_response(flask.jsonify({}), 500)
                 
                 # Add BPM to tracks
                 for track in audio_response_data['audio_features']:
@@ -121,6 +123,7 @@ def create_bpm_playlist():
 
             if 'error' in audio_response_data:
                 print(audio_response_data)
+                return flask.make_response(flask.jsonify({}), 500)
             # Add BPM to reamaining tracks 
             for track in audio_response_data['audio_features']:
                 # Handle if no audio features for a track. This usually occues if the song was recently released and Spotify hasn't gathered audio data yet
@@ -143,6 +146,7 @@ def create_bpm_playlist():
 
             if 'error' in artists_response_data:
                 print(artists_response_data)
+                return flask.make_response(flask.jsonify({}), 500)
 
             for artist in artists_response_data['artists']:
                 for track in saved_artist_dic[artist['id']]:
@@ -154,8 +158,7 @@ def create_bpm_playlist():
 
 
         genre_list.sort()
-        # print(saved_tracks_dic)
-        return {'saved_tracks_dic': saved_tracks_dic , 'saved_tracks_list': saved_tracks_list, 'genre_list': genre_list, 'genre_dic': genre_dic}
+        return flask.make_response(flask.jsonify({'saved_tracks_dic': saved_tracks_dic , 'saved_tracks_list': saved_tracks_list, 'genre_list': genre_list, 'genre_dic': genre_dic}), 200)
 
     # POST: Create playlist of given tracks 
     elif flask.request.method == 'POST':
@@ -169,19 +172,16 @@ def create_bpm_playlist():
         response = requests.get(SPOTIFY_API_URL + '/me', headers=headers)
         data = response.json()
 
-        print(data)
-
         body = {'name': content['name']}
         headers['Content-type'] = 'application/json'
-        print(headers)
         response = requests.post(SPOTIFY_API_URL + '/users/{}/playlists'.format(data['id']), headers=headers, data=json.dumps(body))
         data = response.json()
 
         if 'error' in data:
             print(data)
+            return flask.make_response(flask.jsonify({}), 500)
 
         created_playlist_id = data['id']
-
         body = []
         for track_id in content['tracks']:
             if len(body) == 100:
@@ -190,15 +190,11 @@ def create_bpm_playlist():
             body.append('spotify:track:' + track_id)
 
         if len(body) > 0:
-            print(body)
             response = requests.post(SPOTIFY_API_URL + '/playlists/{}/tracks'.format(created_playlist_id), headers=headers, data=json.dumps(body))
             body = []
 
-        return {'post': 'post'}
+        return flask.make_response(flask.jsonify({}), 201)
 
-    return {'error': 'error'}
-
-
-
+    return flask.make_response(flask.jsonify({}), 405) 
 
 
