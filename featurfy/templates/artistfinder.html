@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>featurfy</title>
+    <link rel="shortcut icon" href="/static/images/logo.png">
+    <link rel="stylesheet" href="/static/css/header.css">
+    <link rel="stylesheet" href="/static/css/artistfinder.css">
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    
+</head>
+    <body>
+        <div id="app">
+            <nav id="header" class="navbar navbar-dark bg-dark navbar-background">
+                <div class="container">
+                    <div class="navbar-logo-offset">
+                        <a class="navbar-brand" href="/">
+                            <img src="/static/images/logo.png" width="45" height="45" class="d-inline-block" alt="">
+                        </a>
+                    </div>
+                    <a class="navbar-logout-offset" href="/logout/">
+                        <button id="logout-button" class="btn btn-md">Logout</button>
+                    </a>
+                </div>
+            </nav>
+            <div class="row row-offset">
+                <form id="search-artist" class="form-horizontal col-6" role="form">
+                    <input id="artist-search" type="text" class="form-control" placeholder="Search for an artist" aria-label="artist" aria-describedby="basic-addon1">
+                </form>
+                <div id="right" class="col-6">
+                    <div class="artist-icon"></div>
+                    <div style="margin-bottom: 5px; margin-top: 24px;" class="row row-margin">
+                        <div class="col-5 text-left">
+                            <span id="artist-name-col" class="clickable asc">Artist</span> 
+                        </div> 
+                        <div class="col text-left">
+                            <span id="popularity-col" class="clickable asc">Popularity</span> 
+                            <i id="popularity-help" style="font-size: 11px;" class="fa fa-info clickable"></i>
+                        </div>
+                        <div class="col text-left">
+                            <span id="following-col" class="clickable asc">Following</span> 
+                        </div>
+                    </div>
+                    <div id="popularity-description" class="row row-margin hide-initial">
+                        <div class="feature-descriptions text-left">
+                            The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks.
+                        </div>
+                    </div>
+                    <div id="related-artists">
+                        <ol id="related-artists-list" class="related-artists-list"></ol>
+                    </div>
+                    <div id="load" class="align-items-center hide-initial">
+                        <div style='margin-top:4.25%;'>
+                            <div class="spinner-border" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class='load-text'>Please wait while we fetch your artist</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- Autocomplete jquery -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <!-- local JS -->
+        <script src="/static/js/artistfinder.js"></script>
+    </body>
+</html>
