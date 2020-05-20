@@ -63,7 +63,6 @@ def spotify_callback():
     token_info = getTokens(request.args['code'])
     if token_info == 'error':
         return flask.redirect(flask.url_for('get_index'))
-    print(token_info)
 
     headers = makeRequestEndpointHeaders(token_info['access_token'])
 
