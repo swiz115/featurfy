@@ -99,12 +99,36 @@ def audiofeat():
         return flask.redirect(flask.url_for('get_index'))
 
     if request.method == 'GET':
+        query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
+        if not query:
+            return flask.redirect(flask.url_for('logout'))
         # Check access tokens
         check_valid_access_tokens(flask.session['username'])
         return flask.render_template('audiofeat.html')
 
+@featurfy.app.route('/artistfinder/', methods=['GET',])   
+def artistfinder():
+    '''
+    Artist Finder route:
+    This route brings user to Artist Finder template
+    '''
+    if 'username' not in flask.session:
+        return flask.redirect(flask.url_for('get_index'))
+
+    if request.method == 'GET':
+        query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
+        if not query:
+            return flask.redirect(flask.url_for('logout'))
+        # Check access tokens
+        check_valid_access_tokens(flask.session['username'])
+        return flask.render_template('artistfinder.html')
+
 @featurfy.app.route('/logout/', methods=['GET',])
 def logout():
+    '''
+    Logout route:
+    This route logs out a user and routes them back to the index route 
+    '''
     flask.session.clear()
     return flask.redirect(flask.url_for('get_index'))
 
