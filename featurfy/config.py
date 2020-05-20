@@ -13,7 +13,7 @@ SESSION_COOKIE_NAME = 'login'
 # Client Keys
 CLIENT_ID = ''
 CLIENT_SECRET = ''
-SCOPE = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-public'
+SCOPE = 'user-read-private user-read-email user-library-read playlist-modify-public playlist-modify-public user-follow-read'
 REDIRECT_URI = 'http://localhost:8000/callback/'
 
 # File Upload to var/uploads/
