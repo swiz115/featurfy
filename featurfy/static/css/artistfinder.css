@@ -1,0 +1,111 @@
+.row-offset{
+  margin-top: 20px;
+}
+
+
+#artist-search{
+    border-radius: 24px;
+}
+
+.autocomplete-item {
+  height: 60px;
+}
+
+.artist-icon {
+  vertical-align: middle;
+  float: left;
+  height: 54px;
+  width: 54px;
+  object-fit: cover;
+  border-radius: 27px;
+  -webkit-border-radius: 27px;
+  -moz-border-radius: 27px;
+}
+
+.artist-label {
+  padding-left: 60px;
+  line-height: 60px;
+}
+
+.ui-autocomplete {
+  max-height: calc(100% - 130px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.related-artists-list{
+  padding: 0px;
+}
+
+ol li{
+  list-style-type: none;
+}
+
+#search-artist {
+  text-align: center;
+  height: calc(100% - 91px);
+  position: absolute;
+  left: 0;
+  padding-left: 5%;
+  padding-top: 3px;
+  overflow-y: scroll; 
+}
+
+#right {
+  height: calc(100% - 91px);
+  text-align: center;
+  position: absolute;
+  right: 0;
+  width: 50%;
+}
+
+#related-artists{
+  height: calc(100% - 53px);
+  text-align: center;
+  position: absolute;
+  overflow-y: scroll; 
+  overflow-x: hidden; 
+  width: 100%;
+  right: 0;
+  padding-left: 15px;
+}
+
+.feature-descriptions{
+  font-size: 70%;
+  margin-top: 9px;
+  margin-bottom: 9px;
+}
+
+div.row-margin{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+i.fa-close{
+  color: red;
+  font-size: 20px;
+}
+
+i.fa-check{
+  color: #28a745;
+  font-size: 20px;
+}
+
+div.hide-initial{
+  display: none;
+}
+
+.clickable{
+  cursor: pointer;
+}
+
+div.spinner-border{
+  width: 200px; 
+  height: 200px;
+}
+
+.load-text{
+  margin-top: 3px; 
+  margin-left: -2px;
+}
+
