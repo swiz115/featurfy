@@ -118,16 +118,14 @@ def check_valid_access_tokens(username):
     :return:
   '''
   query = get_db().cursor().execute('SELECT token_expire, access_token, refresh_token FROM users WHERE username=?',[username]).fetchall()
+  if not query:
+    return False
 
   # Access token has expired, refresh it with refresh token
   if query[0]['token_expire'] <= int(time.time()):
-    data = refresh_access_tokens(query[0]['refresh_token'], username)
+    refresh_access_tokens(query[0]['refresh_token'], username)
 
-    # # # SQL Update on access token and token_expire
-    # access_token_expire = int(time.time()) + data['expires_in']
-    # get_db().cursor().execute('UPDATE users SET access_token=?, token_expire=? WHERE username=?', \
-    #                                 [data['access_token'], access_token_expire, username])
-  return
+  return True
 
 
 
