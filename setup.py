@@ -1,7 +1,5 @@
 """
-Insta485 python package configuration.
-
-Andrew DeOrio <awdeorio@umich.edu>
+Featurfy python package configuration.
 """
 
 from setuptools import setup

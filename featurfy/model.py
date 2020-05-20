@@ -1,4 +1,4 @@
-"""Database API."""
+"""Database API and authentication help"""
 import sqlite3
 import flask
 import featurfy
