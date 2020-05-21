@@ -8,6 +8,8 @@ Visit here: [Featurfy](http://www.featurfy.org/)
 ## Features
 ### Audio Feature Playlist
 This feature allows users to filter their Spotify liked songs by genre, bpm, valence, energy, and danceability. This feature also allows users to create a playlist as they explore the different filters. 
+### Unpopular Artist Finder
+This feature allows users to discover unpopular artists to follow that are related to their favorite artists. 
 ## Run Locally
 ```
 git clone https://github.com/smithjosh115/featurfy
