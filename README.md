@@ -21,6 +21,7 @@ To create a SECRET_KEY run ```python3 -c 'import os; print(os.urandom(24))'```
 python3 -m venv env
 source env/bin/activate
 pip install -e .
+mkdir var
 ./bin/featurfydb create
 ./bin/featurfyrun
 ```
