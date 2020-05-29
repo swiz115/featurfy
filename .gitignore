@@ -7,8 +7,8 @@ spotifykeys.pem
 /featurfy/views/recentlyplayed.py
 /tests
 /bin/featurfybranches
-/featurfyinstall
-/featurfytest
+/bin/featurfyinstall
+/bin/featurfytest
 
 *.log
 
