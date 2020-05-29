@@ -29,17 +29,7 @@ def get_index():
     This brings user to index template
     '''
     if 'username' not in flask.session:
-        auth_query_parameters = {
-            'response_type': 'code',
-            'redirect_uri': REDIRECT_URI,
-            'scope': SCOPE,
-            'show_dialog': SHOW_DIALOG,
-            'client_id': CLIENT_ID
-        }
-        url_args = '&'.join(['{}={}'.format(key,urllib.parse.quote(val)) for key,val in auth_query_parameters.items()])
-        auth_url = '{}/?{}'.format(SPOTIFY_AUTH_URL, url_args)
-
-        return flask.redirect(auth_url)
+        return flask.redirect(flask.url_for('login'))
 
     if request.method == 'GET':
         query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
@@ -95,7 +85,7 @@ def audiofeat():
     This route brings user to Audio feature template
     '''
     if 'username' not in flask.session:
-        return flask.redirect(flask.url_for('get_index'))
+        return flask.redirect(flask.url_for('login'))
 
     if request.method == 'GET':
         query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
@@ -104,6 +94,9 @@ def audiofeat():
         # Check access tokens
         check_valid_access_tokens(flask.session['username'])
         return flask.render_template('audiofeat.html')
+    else:
+        flask.abort(404)
+
 
 @featurfy.app.route('/artistfinder/', methods=['GET',])   
 def artistfinder():
@@ -112,7 +105,7 @@ def artistfinder():
     This route brings user to Artist Finder template
     '''
     if 'username' not in flask.session:
-        return flask.redirect(flask.url_for('get_index'))
+        return flask.redirect(flask.url_for('login'))
 
     if request.method == 'GET':
         query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
@@ -121,6 +114,8 @@ def artistfinder():
         # Check access tokens
         check_valid_access_tokens(flask.session['username'])
         return flask.render_template('artistfinder.html')
+    else:
+        flask.abort(404)
 
 @featurfy.app.route('/logout/', methods=['GET',])
 def logout():
@@ -129,5 +124,36 @@ def logout():
     This route logs out a user and routes them back to the index route 
     '''
     flask.session.clear()
-    return flask.redirect(flask.url_for('get_index'))
+    return flask.redirect(flask.url_for('login'))
+
+@featurfy.app.route('/login/', methods=['GET','POST',])
+def login():
+    '''
+    Login route:
+    This route logs in a user and routes them to the index route 
+    '''
+    if 'username' in flask.session:
+        return flask.redirect(flask.url_for('get_index'))
+
+    if request.method == 'GET':
+        return flask.render_template('login.html')
+        
+    elif request.method == 'POST':
+        auth_query_parameters = {
+            'response_type': 'code',
+            'redirect_uri': REDIRECT_URI,
+            'scope': SCOPE,
+            'show_dialog': SHOW_DIALOG,
+            'client_id': CLIENT_ID
+        }
+        url_args = '&'.join(['{}={}'.format(key,urllib.parse.quote(val)) for key,val in auth_query_parameters.items()])
+        auth_url = '{}/?{}'.format(SPOTIFY_AUTH_URL, url_args)
+
+        return flask.redirect(auth_url)
+
+    else:
+        flask.abort(404)
+
+
+
 
