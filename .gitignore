@@ -3,18 +3,14 @@
 # A .gitignore file will tell git which files and directories to ignore and
 # not add to version control.
 
-submit.tar.gz
-submit.tar.bz2
-starter_files.tar.gz
-starter_files.tar.bz2
 spotifykeys.pem
 /featurfy/views/recentlyplayed.py
 /tests
+/bin/featurfybranches
+/featurfyinstall
+/featurfytest
 
 *.log
-*insta485/html/
-*hello/html/
-*hello_css/html/
 
 # Database 
 *.db
