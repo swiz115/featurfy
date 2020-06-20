@@ -3,7 +3,7 @@ import urllib
 import flask
 from flask import request
 import featurfy
-from featurfy.model import get_db, getTokens, makeAuthorizationHeaders, makeRequestEndpointHeaders, check_valid_access_tokens
+from featurfy.model import get_db, getTokens, makeAuthorizationHeaders, makeRequestEndpointHeaders, check_valid_access_tokens, consistant_session
 import json
 import time
 import requests
@@ -28,14 +28,10 @@ def get_index():
     Index route: 
     This brings user to index template
     '''
-    if 'username' not in flask.session:
-        return flask.redirect(flask.url_for('login'))
+    if 'username' not in flask.session or not consistant_session(flask.session['username']):
+        return flask.redirect(flask.url_for('logout'))
 
     if request.method == 'GET':
-        query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
-        if not query:
-            return flask.redirect(flask.url_for('logout'))
-
         return flask.render_template('index.html')
 
     else:
@@ -58,6 +54,8 @@ def spotify_callback():
 
     response = requests.get(SPOTIFY_API_URL + '/me', headers=headers)
     data = response.json()
+    if 'error' in data:
+        return flask.redirect(flask.url_for('get_index'))
 
     flask.session['username'] = data['display_name']
     # A new session is created. Check if this is a returning user or not. if new user: add to database, else: update access and refresh tokens
@@ -84,13 +82,10 @@ def audiofeat():
     Audio feature route:
     This route brings user to Audio feature template
     '''
-    if 'username' not in flask.session:
-        return flask.redirect(flask.url_for('login'))
+    if 'username' not in flask.session or not consistant_session(flask.session['username']):
+        return flask.redirect(flask.url_for('logout'))
 
     if request.method == 'GET':
-        query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
-        if not query:
-            return flask.redirect(flask.url_for('logout'))
         # Check access tokens
         check_valid_access_tokens(flask.session['username'])
         return flask.render_template('audiofeat.html')
@@ -104,13 +99,10 @@ def artistfinder():
     Artist Finder route:
     This route brings user to Artist Finder template
     '''
-    if 'username' not in flask.session:
-        return flask.redirect(flask.url_for('login'))
+    if 'username' not in flask.session or not consistant_session(flask.session['username']):
+        return flask.redirect(flask.url_for('logout'))
 
     if request.method == 'GET':
-        query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
-        if not query:
-            return flask.redirect(flask.url_for('logout'))
         # Check access tokens
         check_valid_access_tokens(flask.session['username'])
         return flask.render_template('artistfinder.html')
@@ -153,7 +145,3 @@ def login():
 
     else:
         flask.abort(404)
-
-
-
-

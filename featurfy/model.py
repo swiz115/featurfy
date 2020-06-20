@@ -7,7 +7,6 @@ import six
 import base64
 import time
 
-
 def dict_factory(cursor, row):
     """Convert database row objects to a dictionary.
 
@@ -19,7 +18,6 @@ def dict_factory(cursor, row):
     for idx, col in enumerate(cursor.description):
         output[col[0]] = row[idx]
     return output
-
 
 def get_db():
     """Open a new database connection."""
@@ -34,7 +32,6 @@ def get_db():
 
     return flask.g.sqlite_db
 
-
 @featurfy.app.teardown_appcontext
 def close_db(error):
     """Close the database at the end of a request."""
@@ -43,7 +40,6 @@ def close_db(error):
     if hasattr(flask.g, 'sqlite_db'):
         flask.g.sqlite_db.commit()
         flask.g.sqlite_db.close()
-
 
 def getTokens(code):
   '''
@@ -87,7 +83,6 @@ def makeRequestEndpointHeaders(token):
   '''
   return {'Authorization': 'Bearer {0}'.format(token)}
 
-
 def refresh_access_tokens(refresh_token, username):
   '''
     This function gets a new access token with the refresh token and updates the users access token after 
@@ -127,11 +122,16 @@ def check_valid_access_tokens(username):
 
   return True
 
+def consistant_session(username):
+  '''
+    This function is used when database is cleared for whatever reason but users still have valid session active.
+    Log users out so they can be added back into database
 
+    :param username: a users username
+    :return:
+  '''
+  query = get_db().cursor().execute('SELECT username FROM users WHERE username=?',[flask.session['username']]).fetchall();
+  if not query:
+    return False
 
-
-
-
-
-
-
+  return True
