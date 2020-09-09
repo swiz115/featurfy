@@ -138,6 +138,9 @@ class Graph{
     }
 
     addFeatureToSong(featureVal, songId){
+        console.log(featureVal);
+        console.log(songId);
+        console.log(this.featureToSongs);
         this.featureToSongs[featureVal].push(songId);
     }
 
@@ -263,7 +266,7 @@ class Danceability extends Graph{
     }
 }
 
-let bpm = new Bpm(0, 210, 'bpm');
+let bpm = new Bpm(0, 240, 'bpm');
 let valence =new Valence(0, 100, 'valence');
 let energy = new Energy(0, 100, 'energy');
 let danceability = new Danceability(0, 100, 'danceability');
@@ -276,7 +279,7 @@ graphMap['danceability'] = danceability;
 let configBpm = {
     type: 'bar',
     data: {
-        labels: bpm.getGraphRanges.slice(0, 211),
+        labels: bpm.getGraphRanges.slice(0, 241),
         datasets:[{
             label: "Beats Per Minute",
             data: bpm.getSongOccurances,
@@ -797,7 +800,10 @@ $(document).ready(function(){
             for(let item of data.saved_tracks_list){
                 filteredSongs.push(item);
 
-                // Add song id to bpm mapping 
+                // Add song id to bpm mapping
+                console.log(item);
+                console.log(Math.round(data.saved_tracks_dic[item]['bpm']));
+
                 bpm.addFeatureToSong(Math.round(data.saved_tracks_dic[item]['bpm']).toString(), item);
                 valence.addFeatureToSong(Math.round(data.saved_tracks_dic[item]['valence'] * 100).toString(), item);
                 savedTracksDic[item]['valence'] = savedTracksDic[item]['valence'] * 100;
